@@ -34,6 +34,9 @@ public class DbConfig {
     private SQLServerGeneratorDao sqlServerGeneratorDao;
     @Autowired
     private PostgreSQLGeneratorDao postgreSQLGeneratorDao;
+    @Autowired
+    private OscarGeneratorDao oscarGeneratorDao;
+
 
     private static boolean mongo = false;
 
@@ -49,7 +52,9 @@ public class DbConfig {
             return sqlServerGeneratorDao;
         } else if ("postgresql".equalsIgnoreCase(database)) {
             return postgreSQLGeneratorDao;
-        } else {
+        } else if ("oscar".equalsIgnoreCase(database)) {
+            return oscarGeneratorDao;
+        }else {
             throw new RRException("不支持当前数据库：" + database);
         }
     }
